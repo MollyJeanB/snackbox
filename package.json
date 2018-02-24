@@ -2,7 +2,7 @@
   "name": "snackbox",
   "version": "1.0.0",
   "description": "A box of snacks for practicing express and mongoose",
-  "main": "config.js",
+  "main": "server.js",
   "directories": {
     "test": "test"
   },

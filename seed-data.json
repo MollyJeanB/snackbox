@@ -1,0 +1,27 @@
+{
+  "title": "Cranbabies",
+  "description": "dried cranberries covered in chocolate and lavender dust",
+  "tastiness": {
+    "rating": 8,
+    "shareable": false
+  },
+  "supply": 3
+}
+{
+  "title": "Brickleduds",
+  "description": "Buttercrunch bunches in vanilla caramel",
+  "tastiness": {
+    "rating": 9,
+    "shareable": false
+  },
+  "supply": 1
+}
+{
+  "title": "Maggotful Porridge",
+  "description": "as the title implies",
+  "tastiness": {
+    "rating": 2,
+    "shareable": true
+  },
+  "supply": 9
+}
