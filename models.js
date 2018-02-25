@@ -16,12 +16,9 @@ const snackSchema = mongoose.Schema({
 snackSchema.methods.serialize = function() {
   return {
     id: this._id,
-    title: this.description,
+    title: this.title,
     description: this.description,
-    tastiness: {
-      rating: this.rating,
-      shareable: this.shareable
-    },
+    tastiness: this.tastiness,
     supply: this.supply
   };
 };
