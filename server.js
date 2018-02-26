@@ -3,11 +3,12 @@
 const { DATABASE_URL, PORT } = require("./config");
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
-const jsonParser = bodyParser.json();
+// const bodyParser = require("body-parser");
+// const jsonParser = bodyParser.json();
 const mongoose = require("mongoose");
 const { Snack } = require("./models");
 mongoose.Promise = global.Promise;
+app.use(express.json());
 
 app.get("/snacks", (req, res) => {
   Snack.find()
@@ -31,33 +32,33 @@ app.get("/snacks/:id", (req, res) => {
     });
 });
 
-app.post("/snacks", jsonParser, (req, res) => {
+app.post("/snacks", (req, res) => {
   let requiredFields = ["title", "description", "tastiness", "supply"];
   for (var i = 0; i < requiredFields.length; i++) {
     let field = requiredFields[i];
     if (!field) {
       return res.status(400).json({ error: "missing field in request body" });
     }
-    console.log(req.body);
-    Snack.create({
-      title: req.body.title,
-      description: req.body.description,
-      tastiness: req.body.tastiness,
-      supply: req.body.supply
-    })
-      .then(newSnack => {
-        res.status(201).json(newSnack.serialize());
-      })
-      .catch(err => {
-        console.error(err);
-        res.status(500).json({ error: "ughhhhhhhh no no" });
-      });
   }
+  console.log(req.body);
+  Snack.create({
+    title: req.body.title,
+    description: req.body.description,
+    tastiness: req.body.tastiness,
+    supply: req.body.supply
+  })
+    .then(newSnack => {
+      res.status(201).json(newSnack.serialize());
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: "ughhhhhhhh no no" });
+    });
 });
 
-app.put("/snacks/:id", jsonParser, (req, res) => {
+app.put("/snacks/:id", (req, res) => {
   if (!(req.params.id === req.body.id)) {
-    return res.status(400).json({ error: "nah dog, ids don;t match" });
+    return res.status(400).json({ error: "nah dog, ids don't match" });
   }
   let requiredFields = ["title", "description", "tastiness", "supply"];
   for (var i = 0; i < requiredFields.length; i++) {
